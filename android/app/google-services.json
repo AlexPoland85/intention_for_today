@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "119887795891",
+    "project_id": "intention-for-today-123",
+    "storage_bucket": "intention-for-today-123.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119887795891:android:bc92a4050aa1dc794002c6",
+        "android_client_info": {
+          "package_name": "com.aleksanderpawlowski.intention_for_today"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVAQJLSIbMFnLMojUvSCpl4feB14w4PN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119887795891:android:17b318f59a9d5aed4002c6",
+        "android_client_info": {
+          "package_name": "com.alexpawlowski.intention_for_today"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVAQJLSIbMFnLMojUvSCpl4feB14w4PN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
