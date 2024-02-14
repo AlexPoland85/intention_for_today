@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intention_for_today/domain/models/items_model.dart';
 
 class ItemsRemoteDataSource {
   Stream<List<ItemsModel>> getItems() {
