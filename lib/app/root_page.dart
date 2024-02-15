@@ -1,5 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intention_for_today/app/cubit/root_page_cubit.dart';
+import 'package:intention_for_today/data/remote_data_sources_firebase/login_auth_data_source.dart';
+import 'package:intention_for_today/domain/repositories/login_auth_repository.dart';
 import 'package:intention_for_today/features/auth/pages/auth_page.dart';
 import 'package:intention_for_today/features/home/pages/home_page.dart';
 
@@ -33,13 +36,25 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final User? user = FirebaseAuth.instance.currentUser;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Welcome'),
+    return BlocProvider(
+      create: (context) =>
+          RootPageCubit(LoginAuthRepository(LoginAuthDataSource()))..start(),
+      child: BlocBuilder<RootPageCubit, RootPageState>(
+        builder: (context, state) {
+          if (state.errorMessage.isNotEmpty) {
+            return const Center(
+              child: Text('Something went wrong'),
+            );
+          }
+
+          final user = state.user;
+          if (user == null) {
+            return const AuthPage();
+          } else {
+            return const HomePage();
+          }
+        },
       ),
-      body: user != null ? const HomePage() : const AuthPage(),
     );
   }
 }
