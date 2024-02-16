@@ -4,24 +4,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intention_for_today/app/core/enums.dart';
 import 'package:intention_for_today/data/remote_data_sources_firebase/items_remote_data_source.dart';
 import 'package:intention_for_today/domain/repositories/items_repository.dart';
-import 'package:intention_for_today/features/add/pages/add_page.dart';
-import 'package:intention_for_today/features/auth/pages/user_profile.dart';
-import 'package:intention_for_today/features/details/pages/details_page.dart';
-import 'package:intention_for_today/features/home/cubit/home_page_cubit.dart';
+import 'package:intention_for_today/features/details/cubit/details_page_cubit.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:neopop/widgets/shimmer/neopop_shimmer.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({
+class DetailsPage extends StatefulWidget {
+  const DetailsPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<DetailsPage> createState() => _DetailsPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _DetailsPageState extends State<DetailsPage> {
   var currentIndex = 1;
 
   @override
@@ -31,15 +28,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Welcome'),
       ),
-      body: Builder(builder: (context) {
-        if (currentIndex == 0) {
-          return const AddPage();
-        }
-        if (currentIndex == 1) {
-          return const _HomePageBody();
-        }
-        return const UserProfile();
-      }),
+      body: const _DetailsPageBody(),
       bottomNavigationBar: ConvexAppBar(
         backgroundColor: Colors.lightGreen,
         initialActiveIndex: currentIndex,
@@ -58,8 +47,8 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class _HomePageBody extends StatelessWidget {
-  const _HomePageBody({
+class _DetailsPageBody extends StatelessWidget {
+  const _DetailsPageBody({
     Key? key,
   }) : super(key: key);
 
@@ -67,9 +56,9 @@ class _HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          HomePageCubit(ItemsRepository(ItemsRemoteDataSource()))
+          DetailsPageCubit(ItemsRepository(ItemsRemoteDataSource()))
             ..fetchItems(id: ''),
-      child: BlocBuilder<HomePageCubit, HomePageState>(
+      child: BlocBuilder<DetailsPageCubit, DetailsPageState>(
         builder: (context, state) {
           switch (state.status) {
             case Status.initial:
@@ -89,29 +78,22 @@ class _HomePageBody extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: 300.0,
-                      child: TextLiquidFill(
-                        text: 'Intention for Today',
-                        waveColor: Colors.lightGreen,
-                        boxBackgroundColor:
-                            const Color.fromRGBO(203, 232, 169, 1),
-                        textStyle: const TextStyle(
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
+                    for (final item in state.items) ...[
+                      Text(
+                        item.items,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w100,
                         ),
-                        boxHeight: 150.0,
                       ),
-                    ),
+                    ],
                     const SizedBox(
                       height: 20,
                     ),
                     NeoPopTiltedButton(
                       isFloating: true,
                       onTapUp: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const DetailsPage(),
-                        ));
+                        Navigator.pop(context);
                       },
                       decoration: const NeoPopTiltedButtonDecoration(
                         color: Color(0xFFffe22d),
@@ -124,7 +106,7 @@ class _HomePageBody extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               horizontal: 70, vertical: 15),
                           child: Text(
-                            'Draw >',
+                            '< Back',
                             style: TextStyle(
                               color: Colors.lightGreen,
                               fontSize: 25,

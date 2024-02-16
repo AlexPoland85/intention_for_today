@@ -43,6 +43,7 @@ dependencies:
   flutter_bloc: ^8.1.4
   neopop: ^1.0.2
   convex_bottom_bar: ^3.2.0
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:

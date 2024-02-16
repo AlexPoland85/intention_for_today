@@ -6,17 +6,17 @@ import 'package:intention_for_today/domain/repositories/items_repository.dart';
 import 'dart:async';
 import 'dart:math';
 
-part 'home_page_cubit.freezed.dart';
-part 'home_page_state.dart';
+part 'details_page_cubit.freezed.dart';
+part 'details_page_state.dart';
 
-class HomePageCubit extends Cubit<HomePageState> {
-  HomePageCubit(this.itemsRepository) : super(HomePageState());
+class DetailsPageCubit extends Cubit<DetailsPageState> {
+  DetailsPageCubit(this.itemsRepository) : super(DetailsPageState());
 
   final ItemsRepository itemsRepository;
 
   Future<void> fetchItems({required String id}) async {
     emit(
-      HomePageState(
+      DetailsPageState(
         status: Status.loading,
       ),
     );
@@ -26,11 +26,11 @@ class HomePageCubit extends Cubit<HomePageState> {
       final List<ItemsModel> items = await itemsStream.first;
 
       emit(
-        HomePageState(status: Status.success, id: id, items: items),
+        DetailsPageState(status: Status.success, id: id, items: items),
       );
     } catch (error) {
       emit(
-        HomePageState(
+        DetailsPageState(
           status: Status.error,
           errorMessage: error.toString(),
         ),
@@ -40,7 +40,7 @@ class HomePageCubit extends Cubit<HomePageState> {
 
   Future<void> fetchUsersItems({required String id}) async {
     emit(
-      HomePageState(
+      DetailsPageState(
         status: Status.loading,
       ),
     );
@@ -49,11 +49,11 @@ class HomePageCubit extends Cubit<HomePageState> {
 
       final List<ItemsModel> usersItems = await usersItemsStream.first;
       emit(
-        HomePageState(status: Status.success, id: id, items: usersItems),
+        DetailsPageState(status: Status.success, id: id, items: usersItems),
       );
     } catch (error) {
       emit(
-        HomePageState(
+        DetailsPageState(
           status: Status.error,
           errorMessage: error.toString(),
         ),
@@ -63,7 +63,7 @@ class HomePageCubit extends Cubit<HomePageState> {
 
   Future<void> drawItem({required String id}) async {
     emit(
-      HomePageState(
+      DetailsPageState(
         status: Status.loading,
       ),
     );
@@ -82,7 +82,7 @@ class HomePageCubit extends Cubit<HomePageState> {
         final randomItem = allItems[random.nextInt(allItems.length)];
 
         emit(
-          HomePageState(
+          DetailsPageState(
             status: Status.success,
             id: id,
             selectedItem: randomItem,
@@ -90,7 +90,7 @@ class HomePageCubit extends Cubit<HomePageState> {
         );
       } else {
         emit(
-          HomePageState(
+          DetailsPageState(
             status: Status.success,
             id: id,
             errorMessage: 'No items available.',
@@ -99,7 +99,7 @@ class HomePageCubit extends Cubit<HomePageState> {
       }
     } catch (error) {
       emit(
-        HomePageState(
+        DetailsPageState(
           status: Status.error,
           errorMessage: error.toString(),
         ),
@@ -109,18 +109,18 @@ class HomePageCubit extends Cubit<HomePageState> {
 
   Future<void> deleteItems({required String id}) async {
     emit(
-      HomePageState(
+      DetailsPageState(
         status: Status.loading,
       ),
     );
     try {
       await itemsRepository.deleteUsersItem(id);
       emit(
-        HomePageState(status: Status.success, id: id),
+        DetailsPageState(status: Status.success, id: id),
       );
     } catch (error) {
       emit(
-        HomePageState(
+        DetailsPageState(
           status: Status.error,
           errorMessage: error.toString(),
         ),

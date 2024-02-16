@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intention_for_today/app/core/enums.dart';
 import 'package:intention_for_today/app/cubit/root_page_cubit.dart';
 import 'package:intention_for_today/data/remote_data_sources_firebase/login_auth_data_source.dart';
 import 'package:intention_for_today/domain/repositories/login_auth_repository.dart';
@@ -41,17 +42,22 @@ class RootPage extends StatelessWidget {
           RootPageCubit(LoginAuthRepository(LoginAuthDataSource()))..start(),
       child: BlocBuilder<RootPageCubit, RootPageState>(
         builder: (context, state) {
-          if (state.errorMessage.isNotEmpty) {
+          if (state.status == Status.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state.status == Status.error) {
             return const Center(
               child: Text('Something went wrong'),
             );
-          }
-
-          final user = state.user;
-          if (user == null) {
-            return const AuthPage();
           } else {
-            return const HomePage();
+            final user = state.user;
+            if (user == null) {
+              return const AuthPage();
+            } else {
+              return const HomePage();
+            }
           }
         },
       ),
