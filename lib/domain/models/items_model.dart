@@ -9,6 +9,7 @@ class ItemsModel with _$ItemsModel {
   factory ItemsModel({
     required String id,
     required String items,
+    required String usersItems,
   }) = _ItemsModel;
 
   factory ItemsModel.fromJson(Map<String, dynamic> json) =>
