@@ -6,19 +6,11 @@ import 'package:intention_for_today/domain/repositories/items_repository.dart';
 import 'package:intention_for_today/features/details/cubit/details_page_cubit.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:neopop/widgets/shimmer/neopop_shimmer.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 
-class DetailsPage extends StatefulWidget {
+class DetailsPage extends StatelessWidget {
   const DetailsPage({
     Key? key,
   }) : super(key: key);
-
-  @override
-  State<DetailsPage> createState() => _DetailsPageState();
-}
-
-class _DetailsPageState extends State<DetailsPage> {
-  var currentIndex = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -65,18 +57,62 @@ class _DetailsPageBody extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (state.selectedItem != null) ...[
-                      Text(
-                        state.selectedItem!.items,
-                        style: const TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w100,
-                          color: Colors.lightGreen,
+                    if (state.selectedItem != null)
+                      Dismissible(
+                        key: ValueKey(state.selectedItem!.id),
+                        background: const DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 16.0),
+                              child: Icon(
+                                Icons.delete,
+                              ),
+                            ),
+                          ),
+                        ),
+                        confirmDismiss: (direction) async {
+                          return direction == DismissDirection.endToStart;
+                        },
+                        onDismissed: (direction) {
+                          context
+                              .read<DetailsPageCubit>()
+                              .deleteItems(id: state.selectedItem!.id);
+                        },
+                        child: Container(
+                          height: 150.0,
+                          width: 300.0,
+                          padding: const EdgeInsets.all(16.0),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.lightGreen),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                state.selectedItem!.items,
+                                style: const TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w100,
+                                  color: Colors.lightGreen,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ],
                     const SizedBox(
-                      height: 40,
+                        height: 20.0,
+                        child: Center(
+                          child: Text('Swipe left to delete',
+                              style: TextStyle(
+                                  fontSize: 10, color: Colors.lightGreen)),
+                        )),
+                    const SizedBox(
+                      height: 20,
                     ),
                     NeoPopTiltedButton(
                       isFloating: true,
