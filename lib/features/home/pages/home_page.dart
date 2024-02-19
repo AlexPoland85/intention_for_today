@@ -68,7 +68,7 @@ class _HomePageBody extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           HomePageCubit(ItemsRepository(ItemsRemoteDataSource()))
-            ..fetchItems(id: ''),
+            ..start(id: ''),
       child: BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
           switch (state.status) {
