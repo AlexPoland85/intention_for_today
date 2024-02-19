@@ -1,4 +1,3 @@
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intention_for_today/app/core/enums.dart';
@@ -19,30 +18,18 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  var currentIndex = 1;
+  var currentIndex = 2;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Welcome'),
+        title: const Text('Your Intention for Today is...'),
       ),
-      body: const _DetailsPageBody(),
-      bottomNavigationBar: ConvexAppBar(
-        backgroundColor: Colors.lightGreen,
-        initialActiveIndex: currentIndex,
-        onTap: (newIndex) {
-          setState(() {
-            currentIndex = newIndex;
-          });
-        },
-        items: const [
-          TabItem(icon: Icons.add, title: 'Add'),
-          TabItem(icon: Icons.home, title: 'Home'),
-          TabItem(icon: Icons.people, title: 'Profile'),
-        ],
-      ),
+      body: Builder(builder: (context) {
+        return const _DetailsPageBody();
+      }),
     );
   }
 }
@@ -57,7 +44,7 @@ class _DetailsPageBody extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           DetailsPageCubit(ItemsRepository(ItemsRemoteDataSource()))
-            ..fetchItems(id: ''),
+            ..drawItem(id: ''),
       child: BlocBuilder<DetailsPageCubit, DetailsPageState>(
         builder: (context, state) {
           switch (state.status) {
@@ -78,17 +65,18 @@ class _DetailsPageBody extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (final item in state.items) ...[
+                    if (state.selectedItem != null) ...[
                       Text(
-                        item.items,
+                        state.selectedItem!.items,
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 30,
                           fontWeight: FontWeight.w100,
+                          color: Colors.lightGreen,
                         ),
                       ),
                     ],
                     const SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
                     NeoPopTiltedButton(
                       isFloating: true,

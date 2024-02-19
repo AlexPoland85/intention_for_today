@@ -14,53 +14,6 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
 
   final ItemsRepository itemsRepository;
 
-  Future<void> fetchItems({required String id}) async {
-    emit(
-      DetailsPageState(
-        status: Status.loading,
-      ),
-    );
-    try {
-      final itemsStream = itemsRepository.getItems(id);
-
-      final List<ItemsModel> items = await itemsStream.first;
-
-      emit(
-        DetailsPageState(status: Status.success, id: id, items: items),
-      );
-    } catch (error) {
-      emit(
-        DetailsPageState(
-          status: Status.error,
-          errorMessage: error.toString(),
-        ),
-      );
-    }
-  }
-
-  Future<void> fetchUsersItems({required String id}) async {
-    emit(
-      DetailsPageState(
-        status: Status.loading,
-      ),
-    );
-    try {
-      final usersItemsStream = itemsRepository.getUsersItems(id);
-
-      final List<ItemsModel> usersItems = await usersItemsStream.first;
-      emit(
-        DetailsPageState(status: Status.success, id: id, items: usersItems),
-      );
-    } catch (error) {
-      emit(
-        DetailsPageState(
-          status: Status.error,
-          errorMessage: error.toString(),
-        ),
-      );
-    }
-  }
-
   Future<void> drawItem({required String id}) async {
     emit(
       DetailsPageState(
@@ -71,11 +24,10 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
       final itemsStream = itemsRepository.getItems(id);
       final usersItemsStream = itemsRepository.getUsersItems(id);
 
-      final List<ItemsModel> allItems =
-          await itemsStream.asyncMap((items) async {
-        final usersItems = await usersItemsStream.first;
-        return items + usersItems;
-      }).first;
+      final List<ItemsModel> items = await itemsStream.first;
+      final List<ItemsModel> usersItems = await usersItemsStream.first;
+
+      final List<ItemsModel> allItems = items + usersItems;
 
       if (allItems.isNotEmpty) {
         final Random random = Random();
