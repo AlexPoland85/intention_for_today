@@ -9,7 +9,10 @@ import 'package:neopop/neopop.dart';
 class AddPage extends StatefulWidget {
   const AddPage({
     Key? key,
+    required this.onSave,
   }) : super(key: key);
+
+  final Function onSave;
 
   @override
   State<AddPage> createState() => _AddPageState();
@@ -22,8 +25,14 @@ class _AddPageState extends State<AddPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          AddPageCubit(ItemsRepository(ItemsRemoteDataSource())),
-      child: BlocBuilder<AddPageCubit, AddPageState>(
+          AddPageCubit(ItemsRepository(ItemsRemoteDataSource()))
+            ..addUsersItem(content: 'intention'),
+      child: BlocConsumer<AddPageCubit, AddPageState>(
+        listener: (context, state) {
+          if (state.saved == true) {
+            Navigator.of(context).pop();
+          }
+        },
         builder: (context, state) {
           switch (state.status) {
             case Status.initial:
@@ -66,11 +75,12 @@ class _AddPageState extends State<AddPage> {
                                 context
                                     .read<AddPageCubit>()
                                     .addUsersItem(content: _intention!);
+                                widget.onSave();
                               },
                         decoration: const NeoPopTiltedButtonDecoration(
                           color: Color(0xFFffe22d),
                           plunkColor: Color(0xffc3a13b),
-                          shadowColor: Colors.black,
+                          shadowColor: Colors.grey,
                         ),
                         child: const NeoPopShimmer(
                             shimmerColor: Colors.white,

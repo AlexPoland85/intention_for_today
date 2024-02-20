@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intention_for_today/app/core/enums.dart';
-import 'package:intention_for_today/domain/models/items_model.dart';
 import 'package:intention_for_today/domain/repositories/items_repository.dart';
 import 'dart:async';
 
@@ -22,7 +21,7 @@ class AddPageCubit extends Cubit<AddPageState> {
     try {
       await itemsRepository.addUsersItem(content);
       emit(
-        AddPageState(status: Status.success, content: content),
+        AddPageState(status: Status.success, content: 'intention'),
       );
     } catch (error) {
       emit(

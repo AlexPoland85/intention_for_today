@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AddPageState {
-  List<ItemsModel> get items => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
   String? get content => throw _privateConstructorUsedError;
+  bool? get saved => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddPageStateCopyWith<AddPageState> get copyWith =>
@@ -33,10 +33,7 @@ abstract class $AddPageStateCopyWith<$Res> {
       _$AddPageStateCopyWithImpl<$Res, AddPageState>;
   @useResult
   $Res call(
-      {List<ItemsModel> items,
-      Status status,
-      String? errorMessage,
-      String? content});
+      {Status status, String? errorMessage, String? content, bool? saved});
 }
 
 /// @nodoc
@@ -52,16 +49,12 @@ class _$AddPageStateCopyWithImpl<$Res, $Val extends AddPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? items = null,
     Object? status = null,
     Object? errorMessage = freezed,
     Object? content = freezed,
+    Object? saved = freezed,
   }) {
     return _then(_value.copyWith(
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<ItemsModel>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -74,6 +67,10 @@ class _$AddPageStateCopyWithImpl<$Res, $Val extends AddPageState>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
+      saved: freezed == saved
+          ? _value.saved
+          : saved // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -87,10 +84,7 @@ abstract class _$$AddPageStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<ItemsModel> items,
-      Status status,
-      String? errorMessage,
-      String? content});
+      {Status status, String? errorMessage, String? content, bool? saved});
 }
 
 /// @nodoc
@@ -104,16 +98,12 @@ class __$$AddPageStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? items = null,
     Object? status = null,
     Object? errorMessage = freezed,
     Object? content = freezed,
+    Object? saved = freezed,
   }) {
     return _then(_$AddPageStateImpl(
-      items: null == items
-          ? _value._items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<ItemsModel>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -126,6 +116,10 @@ class __$$AddPageStateImplCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
+      saved: freezed == saved
+          ? _value.saved
+          : saved // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -134,20 +128,10 @@ class __$$AddPageStateImplCopyWithImpl<$Res>
 
 class _$AddPageStateImpl implements _AddPageState {
   _$AddPageStateImpl(
-      {final List<ItemsModel> items = const [],
-      this.status = Status.initial,
+      {this.status = Status.initial,
       this.errorMessage,
-      this.content})
-      : _items = items;
-
-  final List<ItemsModel> _items;
-  @override
-  @JsonKey()
-  List<ItemsModel> get items {
-    if (_items is EqualUnmodifiableListView) return _items;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
-  }
+      this.content,
+      this.saved});
 
   @override
   @JsonKey()
@@ -156,10 +140,12 @@ class _$AddPageStateImpl implements _AddPageState {
   final String? errorMessage;
   @override
   final String? content;
+  @override
+  final bool? saved;
 
   @override
   String toString() {
-    return 'AddPageState(items: $items, status: $status, errorMessage: $errorMessage, content: $content)';
+    return 'AddPageState(status: $status, errorMessage: $errorMessage, content: $content, saved: $saved)';
   }
 
   @override
@@ -167,20 +153,16 @@ class _$AddPageStateImpl implements _AddPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddPageStateImpl &&
-            const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.content, content) || other.content == content));
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.saved, saved) || other.saved == saved));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_items),
-      status,
-      errorMessage,
-      content);
+  int get hashCode =>
+      Object.hash(runtimeType, status, errorMessage, content, saved);
 
   @JsonKey(ignore: true)
   @override
@@ -191,19 +173,19 @@ class _$AddPageStateImpl implements _AddPageState {
 
 abstract class _AddPageState implements AddPageState {
   factory _AddPageState(
-      {final List<ItemsModel> items,
-      final Status status,
+      {final Status status,
       final String? errorMessage,
-      final String? content}) = _$AddPageStateImpl;
+      final String? content,
+      final bool? saved}) = _$AddPageStateImpl;
 
-  @override
-  List<ItemsModel> get items;
   @override
   Status get status;
   @override
   String? get errorMessage;
   @override
   String? get content;
+  @override
+  bool? get saved;
   @override
   @JsonKey(ignore: true)
   _$$AddPageStateImplCopyWith<_$AddPageStateImpl> get copyWith =>
