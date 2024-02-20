@@ -10,15 +10,3 @@ class HomePageState with _$HomePageState {
     String? id,
   }) = _HomePageState;
 }
-
-// @freezed
-// class HomePageState with _$HomePageState {
-//   factory HomePageState({
-//     @Default(Status.initial) Status status,
-//     String? id,
-//     List<ItemModel> items,
-//     List<ItemModel> usersItems,
-//     ItemModel? selectedItem,
-//     String? errorMessage,
-//   }) = _HomePageState;
-// }

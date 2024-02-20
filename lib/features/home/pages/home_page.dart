@@ -29,11 +29,25 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Welcome'),
+        title: const Text('Have a Great Day!'),
+        titleTextStyle: const TextStyle(
+          color: Colors.green,
+          fontSize: 20.0,
+        ),
       ),
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
-          return const AddPage();
+          return AddPage(onSave: () {
+            setState(() {
+              currentIndex = 1;
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Intention added'),
+                backgroundColor: Colors.grey,
+              ),
+            );
+          });
         }
         if (currentIndex == 1) {
           return const _HomePageBody();
@@ -116,7 +130,7 @@ class _HomePageBody extends StatelessWidget {
                       decoration: const NeoPopTiltedButtonDecoration(
                         color: Color(0xFFffe22d),
                         plunkColor: Color(0xffc3a13b),
-                        shadowColor: Colors.black,
+                        shadowColor: Colors.grey,
                       ),
                       child: const NeoPopShimmer(
                         shimmerColor: Colors.white,
