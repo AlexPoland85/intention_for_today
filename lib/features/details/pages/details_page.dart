@@ -18,6 +18,10 @@ class DetailsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Your Intention for Today is...'),
+        titleTextStyle: const TextStyle(
+          color: Colors.green,
+          fontSize: 20.0,
+        ),
       ),
       body: Builder(builder: (context) {
         return const _DetailsPageBody();
@@ -122,7 +126,7 @@ class _DetailsPageBody extends StatelessWidget {
                       decoration: const NeoPopTiltedButtonDecoration(
                         color: Color(0xFFffe22d),
                         plunkColor: Color(0xffc3a13b),
-                        shadowColor: Colors.black,
+                        shadowColor: Colors.grey,
                       ),
                       child: const NeoPopShimmer(
                         shimmerColor: Colors.white,

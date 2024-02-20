@@ -9,15 +9,3 @@ class DetailsPageState with _$DetailsPageState {
     String? id,
   }) = _DetailsPageState;
 }
-
-// @freezed
-// class DetailsPageState with _$DetailsPageState {
-//   factory DetailsPageState({
-//     @Default(Status.initial) Status status,
-//     String? id,
-//     List<ItemModel> items,
-//     List<ItemModel> usersItems,
-//     ItemModel? selectedItem,
-//     String? errorMessage,
-//   }) = _DetailsPageState;
-// }

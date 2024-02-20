@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DetailsPageState {
-  List<ItemsModel> get items => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   ItemsModel? get selectedItem => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
@@ -34,8 +33,7 @@ abstract class $DetailsPageStateCopyWith<$Res> {
       _$DetailsPageStateCopyWithImpl<$Res, DetailsPageState>;
   @useResult
   $Res call(
-      {List<ItemsModel> items,
-      Status status,
+      {Status status,
       ItemsModel? selectedItem,
       String? errorMessage,
       String? id});
@@ -56,17 +54,12 @@ class _$DetailsPageStateCopyWithImpl<$Res, $Val extends DetailsPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? items = null,
     Object? status = null,
     Object? selectedItem = freezed,
     Object? errorMessage = freezed,
     Object? id = freezed,
   }) {
     return _then(_value.copyWith(
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<ItemsModel>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -108,8 +101,7 @@ abstract class _$$DetailsPageStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<ItemsModel> items,
-      Status status,
+      {Status status,
       ItemsModel? selectedItem,
       String? errorMessage,
       String? id});
@@ -129,17 +121,12 @@ class __$$DetailsPageStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? items = null,
     Object? status = null,
     Object? selectedItem = freezed,
     Object? errorMessage = freezed,
     Object? id = freezed,
   }) {
     return _then(_$DetailsPageStateImpl(
-      items: null == items
-          ? _value._items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<ItemsModel>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -164,21 +151,10 @@ class __$$DetailsPageStateImplCopyWithImpl<$Res>
 
 class _$DetailsPageStateImpl implements _DetailsPageState {
   _$DetailsPageStateImpl(
-      {final List<ItemsModel> items = const [],
-      this.status = Status.initial,
+      {this.status = Status.initial,
       this.selectedItem,
       this.errorMessage,
-      this.id})
-      : _items = items;
-
-  final List<ItemsModel> _items;
-  @override
-  @JsonKey()
-  List<ItemsModel> get items {
-    if (_items is EqualUnmodifiableListView) return _items;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
-  }
+      this.id});
 
   @override
   @JsonKey()
@@ -192,7 +168,7 @@ class _$DetailsPageStateImpl implements _DetailsPageState {
 
   @override
   String toString() {
-    return 'DetailsPageState(items: $items, status: $status, selectedItem: $selectedItem, errorMessage: $errorMessage, id: $id)';
+    return 'DetailsPageState(status: $status, selectedItem: $selectedItem, errorMessage: $errorMessage, id: $id)';
   }
 
   @override
@@ -200,7 +176,6 @@ class _$DetailsPageStateImpl implements _DetailsPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DetailsPageStateImpl &&
-            const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.selectedItem, selectedItem) ||
                 other.selectedItem == selectedItem) &&
@@ -210,13 +185,8 @@ class _$DetailsPageStateImpl implements _DetailsPageState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_items),
-      status,
-      selectedItem,
-      errorMessage,
-      id);
+  int get hashCode =>
+      Object.hash(runtimeType, status, selectedItem, errorMessage, id);
 
   @JsonKey(ignore: true)
   @override
@@ -228,14 +198,11 @@ class _$DetailsPageStateImpl implements _DetailsPageState {
 
 abstract class _DetailsPageState implements DetailsPageState {
   factory _DetailsPageState(
-      {final List<ItemsModel> items,
-      final Status status,
+      {final Status status,
       final ItemsModel? selectedItem,
       final String? errorMessage,
       final String? id}) = _$DetailsPageStateImpl;
 
-  @override
-  List<ItemsModel> get items;
   @override
   Status get status;
   @override
