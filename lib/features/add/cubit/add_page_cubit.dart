@@ -21,7 +21,7 @@ class AddPageCubit extends Cubit<AddPageState> {
     try {
       await itemsRepository.addUsersItem(content);
       emit(
-        AddPageState(status: Status.success, content: 'intention'),
+        AddPageState(status: Status.success),
       );
     } catch (error) {
       emit(

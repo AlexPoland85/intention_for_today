@@ -26,7 +26,7 @@ class _AddPageState extends State<AddPage> {
     return BlocProvider(
       create: (context) =>
           AddPageCubit(ItemsRepository(ItemsRemoteDataSource()))
-            ..addUsersItem(content: 'intention'),
+            ..addUsersItem(content: ''),
       child: BlocConsumer<AddPageCubit, AddPageState>(
         listener: (context, state) {
           if (state.saved == true) {
