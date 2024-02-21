@@ -22,6 +22,7 @@ ItemsModel _$ItemsModelFromJson(Map<String, dynamic> json) {
 mixin _$ItemsModel {
   String get id => throw _privateConstructorUsedError;
   String get items => throw _privateConstructorUsedError;
+  String get usersItems => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $ItemsModelCopyWith<$Res> {
           ItemsModel value, $Res Function(ItemsModel) then) =
       _$ItemsModelCopyWithImpl<$Res, ItemsModel>;
   @useResult
-  $Res call({String id, String items});
+  $Res call({String id, String items, String usersItems});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$ItemsModelCopyWithImpl<$Res, $Val extends ItemsModel>
   $Res call({
     Object? id = null,
     Object? items = null,
+    Object? usersItems = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -62,6 +64,10 @@ class _$ItemsModelCopyWithImpl<$Res, $Val extends ItemsModel>
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
+              as String,
+      usersItems: null == usersItems
+          ? _value.usersItems
+          : usersItems // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +81,7 @@ abstract class _$$ItemsModelImplCopyWith<$Res>
       __$$ItemsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String items});
+  $Res call({String id, String items, String usersItems});
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class __$$ItemsModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? items = null,
+    Object? usersItems = null,
   }) {
     return _then(_$ItemsModelImpl(
       id: null == id
@@ -101,6 +108,10 @@ class __$$ItemsModelImplCopyWithImpl<$Res>
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as String,
+      usersItems: null == usersItems
+          ? _value.usersItems
+          : usersItems // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -108,7 +119,9 @@ class __$$ItemsModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ItemsModelImpl extends _ItemsModel {
-  _$ItemsModelImpl({required this.id, required this.items}) : super._();
+  _$ItemsModelImpl(
+      {required this.id, required this.items, required this.usersItems})
+      : super._();
 
   factory _$ItemsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ItemsModelImplFromJson(json);
@@ -117,10 +130,12 @@ class _$ItemsModelImpl extends _ItemsModel {
   final String id;
   @override
   final String items;
+  @override
+  final String usersItems;
 
   @override
   String toString() {
-    return 'ItemsModel(id: $id, items: $items)';
+    return 'ItemsModel(id: $id, items: $items, usersItems: $usersItems)';
   }
 
   @override
@@ -129,12 +144,14 @@ class _$ItemsModelImpl extends _ItemsModel {
         (other.runtimeType == runtimeType &&
             other is _$ItemsModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.items, items) || other.items == items));
+            (identical(other.items, items) || other.items == items) &&
+            (identical(other.usersItems, usersItems) ||
+                other.usersItems == usersItems));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, items);
+  int get hashCode => Object.hash(runtimeType, id, items, usersItems);
 
   @JsonKey(ignore: true)
   @override
@@ -151,8 +168,10 @@ class _$ItemsModelImpl extends _ItemsModel {
 }
 
 abstract class _ItemsModel extends ItemsModel {
-  factory _ItemsModel({required final String id, required final String items}) =
-      _$ItemsModelImpl;
+  factory _ItemsModel(
+      {required final String id,
+      required final String items,
+      required final String usersItems}) = _$ItemsModelImpl;
   _ItemsModel._() : super._();
 
   factory _ItemsModel.fromJson(Map<String, dynamic> json) =
@@ -162,6 +181,8 @@ abstract class _ItemsModel extends ItemsModel {
   String get id;
   @override
   String get items;
+  @override
+  String get usersItems;
   @override
   @JsonKey(ignore: true)
   _$$ItemsModelImplCopyWith<_$ItemsModelImpl> get copyWith =>

@@ -14,7 +14,11 @@ class ItemsRemoteDataSource {
           .snapshots()
           .map((querySnapshot) {
         return querySnapshot.docs.map((doc) {
-          return ItemsModel(id: doc.id, items: doc['intention']);
+          return ItemsModel(
+            id: doc.id,
+            items: doc['intention'],
+            usersItems: doc['intention'],
+          );
         }).toList();
       });
     } on FirebaseException catch (error) {
@@ -35,7 +39,11 @@ class ItemsRemoteDataSource {
           .snapshots()
           .map((querySnapshot) {
         return querySnapshot.docs.map((doc) {
-          return ItemsModel(id: doc.id, items: doc['intention']);
+          return ItemsModel(
+            id: doc.id,
+            items: doc['intention'],
+            usersItems: doc['intention'],
+          );
         }).toList();
       });
     } on FirebaseException catch (error) {
