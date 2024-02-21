@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RootPageState {
-  User? get user => throw _privateConstructorUsedError;
+  auth.User? get user => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
@@ -31,7 +31,7 @@ abstract class $RootPageStateCopyWith<$Res> {
           RootPageState value, $Res Function(RootPageState) then) =
       _$RootPageStateCopyWithImpl<$Res, RootPageState>;
   @useResult
-  $Res call({User? user, Status status, String errorMessage});
+  $Res call({auth.User? user, Status status, String errorMessage});
 }
 
 /// @nodoc
@@ -55,7 +55,7 @@ class _$RootPageStateCopyWithImpl<$Res, $Val extends RootPageState>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as auth.User?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -76,7 +76,7 @@ abstract class _$$RootPageStateImplCopyWith<$Res>
       __$$RootPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User? user, Status status, String errorMessage});
+  $Res call({auth.User? user, Status status, String errorMessage});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class __$$RootPageStateImplCopyWithImpl<$Res>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as auth.User?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -118,7 +118,7 @@ class _$RootPageStateImpl implements _RootPageState {
       {this.user, this.status = Status.loading, this.errorMessage = ''});
 
   @override
-  final User? user;
+  final auth.User? user;
   @override
   @JsonKey()
   final Status status;
@@ -154,12 +154,12 @@ class _$RootPageStateImpl implements _RootPageState {
 
 abstract class _RootPageState implements RootPageState {
   factory _RootPageState(
-      {final User? user,
+      {final auth.User? user,
       final Status status,
       final String errorMessage}) = _$RootPageStateImpl;
 
   @override
-  User? get user;
+  auth.User? get user;
   @override
   Status get status;
   @override

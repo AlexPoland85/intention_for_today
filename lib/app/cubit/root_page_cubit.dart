@@ -1,23 +1,20 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intention_for_today/app/core/enums.dart';
-import 'package:intention_for_today/domain/repositories/login_auth_repository.dart';
 
 part 'root_page_state.dart';
 part 'root_page_cubit.freezed.dart';
 
 class RootPageCubit extends Cubit<RootPageState> {
-  RootPageCubit(this._loginAuthRepository)
+  RootPageCubit()
       : super(
           RootPageState(
             user: null,
           ),
         );
-
-  final LoginAuthRepository _loginAuthRepository;
 
   StreamSubscription? _streamSubscription;
 
@@ -30,7 +27,8 @@ class RootPageCubit extends Cubit<RootPageState> {
     );
 
     try {
-      _streamSubscription = _loginAuthRepository.start().listen((user) {
+      _streamSubscription =
+          auth.FirebaseAuth.instance.authStateChanges().listen((user) {
         emit(
           RootPageState(
             user: user,
@@ -47,6 +45,10 @@ class RootPageCubit extends Cubit<RootPageState> {
         ),
       );
     }
+  }
+
+  Future<void> signOut() async {
+    await auth.FirebaseAuth.instance.signOut();
   }
 
   @override

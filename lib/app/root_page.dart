@@ -2,21 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intention_for_today/app/core/enums.dart';
 import 'package:intention_for_today/app/cubit/root_page_cubit.dart';
-import 'package:intention_for_today/data/remote_data_sources_firebase/login_auth_data_source.dart';
-import 'package:intention_for_today/domain/repositories/login_auth_repository.dart';
 import 'package:intention_for_today/features/auth/pages/auth_page.dart';
 import 'package:intention_for_today/features/home/pages/home_page.dart';
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
   });
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,8 +31,7 @@ class RootPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          RootPageCubit(LoginAuthRepository(LoginAuthDataSource()))..start(),
+      create: (context) => RootPageCubit()..start(),
       child: BlocBuilder<RootPageCubit, RootPageState>(
         builder: (context, state) {
           if (state.status == Status.loading) {
