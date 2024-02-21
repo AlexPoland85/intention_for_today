@@ -11,7 +11,6 @@ class AuthPage extends StatelessWidget {
     return StreamBuilder<auth.User?>(
       stream: auth.FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        //User is not signed in
         if (!snapshot.hasData) {
           return SignInScreen(
             providers: [
@@ -19,10 +18,10 @@ class AuthPage extends StatelessWidget {
             ],
           );
         }
-
-        //Render your application if auhtenticated
         return const HomePage();
       },
     );
   }
 }
+
+// code prepared to implement any other login page
