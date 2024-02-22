@@ -25,8 +25,7 @@ class _AddPageState extends State<AddPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          AddPageCubit(ItemsRepository(ItemsRemoteDataSource()))
-            ..addUsersItem(content: ''),
+          AddPageCubit(ItemsRepository(ItemsRemoteDataSource()))..start(),
       child: BlocConsumer<AddPageCubit, AddPageState>(
         listener: (context, state) {
           if (state.saved == true) {

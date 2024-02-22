@@ -12,6 +12,14 @@ class AddPageCubit extends Cubit<AddPageState> {
 
   final ItemsRepository itemsRepository;
 
+  Future<void> start() async {
+    emit(
+      AddPageState(
+        status: Status.success,
+      ),
+    );
+  }
+
   Future<void> addUsersItem({required String content}) async {
     emit(
       AddPageState(
