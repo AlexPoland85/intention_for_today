@@ -31,7 +31,7 @@ class AddPageCubit extends Cubit<AddPageState> {
     try {
       await itemsRepository.addUsersItem(content);
       emit(
-        AddPageState(status: Status.success),
+        AddPageState(status: Status.success, saved: true),
       );
     } catch (error) {
       emit(

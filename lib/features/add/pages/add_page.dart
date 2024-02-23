@@ -29,7 +29,7 @@ class _AddPageState extends State<AddPage> {
       child: BlocConsumer<AddPageCubit, AddPageState>(
         listener: (context, state) {
           if (state.saved == true) {
-            Navigator.of(context).pop();
+            widget.onSave();
           }
         },
         builder: (context, state) {
@@ -74,7 +74,6 @@ class _AddPageState extends State<AddPage> {
                                 context
                                     .read<AddPageCubit>()
                                     .addUsersItem(content: _intention!);
-                                widget.onSave();
                               },
                         decoration: const NeoPopTiltedButtonDecoration(
                           color: Color(0xFFffe22d),

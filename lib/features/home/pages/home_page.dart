@@ -54,6 +54,7 @@ class _HomePageState extends State<HomePage> {
         return const UserProfile();
       }),
       bottomNavigationBar: ConvexAppBar(
+        key: ValueKey(currentIndex),
         backgroundColor: Colors.lightGreen,
         initialActiveIndex: currentIndex,
         onTap: (newIndex) {

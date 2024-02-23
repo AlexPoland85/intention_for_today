@@ -87,9 +87,8 @@ class _DetailsPageBody extends StatelessWidget {
                         },
                         child: Expanded(
                           child: Container(
-                            height: 150.0,
-                            width: 300.0,
-                            padding: const EdgeInsets.all(16.0),
+                            margin: const EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.lightGreen),
                               borderRadius: BorderRadius.circular(10.0),
@@ -99,7 +98,7 @@ class _DetailsPageBody extends StatelessWidget {
                                 Text(
                                   state.selectedItem!.items,
                                   style: const TextStyle(
-                                    fontSize: 30,
+                                    fontSize: 25,
                                     fontWeight: FontWeight.w100,
                                     color: Colors.lightGreen,
                                   ),
