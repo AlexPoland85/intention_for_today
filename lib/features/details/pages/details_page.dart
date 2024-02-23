@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intention_for_today/app/core/enums.dart';
-import 'package:intention_for_today/data/remote_data_sources_firebase/items_remote_data_source.dart';
-import 'package:intention_for_today/domain/repositories/items_repository.dart';
+import 'package:intention_for_today/app/injection_container.dart';
 import 'package:intention_for_today/features/details/cubit/details_page_cubit.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:neopop/widgets/shimmer/neopop_shimmer.dart';
@@ -37,10 +36,10 @@ class _DetailsPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          DetailsPageCubit(ItemsRepository(ItemsRemoteDataSource()))
-            ..drawItem(id: ''),
+    return BlocProvider<DetailsPageCubit>(
+      create: (context) {
+        return getIt()..drawItem(id: '');
+      },
       child: BlocBuilder<DetailsPageCubit, DetailsPageState>(
         builder: (context, state) {
           switch (state.status) {
@@ -86,25 +85,27 @@ class _DetailsPageBody extends StatelessWidget {
                               .read<DetailsPageCubit>()
                               .deleteItems(id: state.selectedItem!.id);
                         },
-                        child: Container(
-                          height: 150.0,
-                          width: 300.0,
-                          padding: const EdgeInsets.all(16.0),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.lightGreen),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                state.selectedItem!.items,
-                                style: const TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w100,
-                                  color: Colors.lightGreen,
+                        child: Expanded(
+                          child: Container(
+                            height: 150.0,
+                            width: 300.0,
+                            padding: const EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.lightGreen),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  state.selectedItem!.items,
+                                  style: const TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w100,
+                                    color: Colors.lightGreen,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

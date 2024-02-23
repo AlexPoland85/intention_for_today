@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 import 'package:intention_for_today/domain/models/items_model.dart';
 
+@injectable
 class ItemsRemoteDataSource {
   Stream<List<ItemsModel>> getItems() {
     final userId = FirebaseAuth.instance.currentUser?.uid;

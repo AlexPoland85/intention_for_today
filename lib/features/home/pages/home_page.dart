@@ -2,8 +2,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intention_for_today/app/core/enums.dart';
-import 'package:intention_for_today/data/remote_data_sources_firebase/items_remote_data_source.dart';
-import 'package:intention_for_today/domain/repositories/items_repository.dart';
+import 'package:intention_for_today/app/injection_container.dart';
 import 'package:intention_for_today/features/add/pages/add_page.dart';
 import 'package:intention_for_today/features/auth/pages/user_profile.dart';
 import 'package:intention_for_today/features/details/pages/details_page.dart';
@@ -79,10 +78,10 @@ class _HomePageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          HomePageCubit(ItemsRepository(ItemsRemoteDataSource()))
-            ..start(id: ''),
+    return BlocProvider<HomePageCubit>(
+      create: (context) {
+        return getIt()..start(id: '');
+      },
       child: BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
           switch (state.status) {

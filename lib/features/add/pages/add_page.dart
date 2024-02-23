@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intention_for_today/app/core/enums.dart';
-import 'package:intention_for_today/data/remote_data_sources_firebase/items_remote_data_source.dart';
-import 'package:intention_for_today/domain/repositories/items_repository.dart';
+import 'package:intention_for_today/app/injection_container.dart';
 import 'package:intention_for_today/features/add/cubit/add_page_cubit.dart';
 import 'package:neopop/neopop.dart';
 
@@ -23,9 +22,10 @@ class _AddPageState extends State<AddPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          AddPageCubit(ItemsRepository(ItemsRemoteDataSource()))..start(),
+    return BlocProvider<AddPageCubit>(
+      create: (context) {
+        return getIt()..start();
+      },
       child: BlocConsumer<AddPageCubit, AddPageState>(
         listener: (context, state) {
           if (state.saved == true) {
