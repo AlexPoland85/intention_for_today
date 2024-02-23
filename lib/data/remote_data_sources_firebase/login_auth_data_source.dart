@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class LoginAuthDataSource {
   Future<void> signIn(String email, String password) async {
     try {

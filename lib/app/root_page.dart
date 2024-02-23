@@ -4,6 +4,7 @@ import 'package:intention_for_today/app/core/enums.dart';
 import 'package:intention_for_today/app/cubit/root_page_cubit.dart';
 import 'package:intention_for_today/features/auth/pages/auth_page.dart';
 import 'package:intention_for_today/features/home/pages/home_page.dart';
+import 'package:intention_for_today/app/injection_container.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -30,8 +31,10 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RootPageCubit()..start(),
+    return BlocProvider<RootPageCubit>(
+      create: (context) {
+        return getIt()..start();
+      },
       child: BlocBuilder<RootPageCubit, RootPageState>(
         builder: (context, state) {
           if (state.status == Status.loading) {

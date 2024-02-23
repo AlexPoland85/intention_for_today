@@ -1,6 +1,8 @@
+import 'package:injectable/injectable.dart';
 import 'package:intention_for_today/data/remote_data_sources_firebase/items_remote_data_source.dart';
 import 'package:intention_for_today/domain/models/items_model.dart';
 
+@injectable
 class ItemsRepository {
   ItemsRepository(this._itemsRemoteDataSource);
 
