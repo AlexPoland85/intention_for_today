@@ -5,6 +5,7 @@ import 'package:intention_for_today/app/injection_container.dart';
 import 'package:intention_for_today/features/details/cubit/details_page_cubit.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:neopop/widgets/shimmer/neopop_shimmer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({
@@ -16,7 +17,7 @@ class DetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Your Intention for Today is...'),
+        title: Text(AppLocalizations.of(context)!.yourIntentionForTodayIs),
         titleTextStyle: const TextStyle(
           color: Colors.green,
           fontSize: 20.0,
@@ -44,8 +45,8 @@ class _DetailsPageBody extends StatelessWidget {
         builder: (context, state) {
           switch (state.status) {
             case Status.initial:
-              return const Center(
-                child: Text('Initial state'),
+              return Center(
+                child: Text(AppLocalizations.of(context)!.initialState),
               );
             case Status.loading:
               return const Center(
@@ -108,13 +109,15 @@ class _DetailsPageBody extends StatelessWidget {
                           ),
                         ),
                       ),
-                    const SizedBox(
-                        height: 20.0,
-                        child: Center(
-                          child: Text('Swipe left to delete',
-                              style: TextStyle(
-                                  fontSize: 10, color: Colors.lightGreen)),
-                        )),
+                    SizedBox(
+                      height: 20.0,
+                      child: Center(
+                        child: Text(
+                            AppLocalizations.of(context)!.swipeLeftToDelete,
+                            style: const TextStyle(
+                                fontSize: 10, color: Colors.lightGreen)),
+                      ),
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -128,14 +131,14 @@ class _DetailsPageBody extends StatelessWidget {
                         plunkColor: Color(0xffc3a13b),
                         shadowColor: Colors.grey,
                       ),
-                      child: const NeoPopShimmer(
+                      child: NeoPopShimmer(
                         shimmerColor: Colors.white,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 70, vertical: 15),
                           child: Text(
-                            '< Back',
-                            style: TextStyle(
+                            AppLocalizations.of(context)!.back,
+                            style: const TextStyle(
                               color: Colors.lightGreen,
                               fontSize: 25,
                               fontWeight: FontWeight.bold,

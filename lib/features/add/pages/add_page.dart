@@ -4,6 +4,7 @@ import 'package:intention_for_today/app/core/enums.dart';
 import 'package:intention_for_today/app/injection_container.dart';
 import 'package:intention_for_today/features/add/cubit/add_page_cubit.dart';
 import 'package:neopop/neopop.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({
@@ -35,8 +36,8 @@ class _AddPageState extends State<AddPage> {
         builder: (context, state) {
           switch (state.status) {
             case Status.initial:
-              return const Center(
-                child: Text('Initial state'),
+              return Center(
+                child: Text(AppLocalizations.of(context)!.initialState),
               );
             case Status.loading:
               return const Center(
@@ -54,8 +55,9 @@ class _AddPageState extends State<AddPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextField(
-                        decoration: const InputDecoration(
-                          hintText: 'Add Your Intention for Today',
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)!
+                              .addYourIntentionForToday,
                         ),
                         onChanged: (newValue) {
                           setState(() {
@@ -80,14 +82,14 @@ class _AddPageState extends State<AddPage> {
                           plunkColor: Color(0xffc3a13b),
                           shadowColor: Colors.grey,
                         ),
-                        child: const NeoPopShimmer(
+                        child: NeoPopShimmer(
                             shimmerColor: Colors.white,
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 70, vertical: 15),
                               child: Text(
-                                'Add >',
-                                style: TextStyle(
+                                AppLocalizations.of(context)!.add,
+                                style: const TextStyle(
                                   color: Colors.lightGreen,
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,

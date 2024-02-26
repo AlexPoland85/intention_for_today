@@ -10,6 +10,7 @@ import 'package:intention_for_today/features/home/cubit/home_page_cubit.dart';
 import 'package:neopop/widgets/buttons/neopop_tilted_button/neopop_tilted_button.dart';
 import 'package:neopop/widgets/shimmer/neopop_shimmer.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Have a Great Day!'),
+        title: Text(AppLocalizations.of(context)!.intentionForToday),
         titleTextStyle: const TextStyle(
           color: Colors.green,
           fontSize: 20.0,
@@ -41,8 +42,8 @@ class _HomePageState extends State<HomePage> {
               currentIndex = 1;
             });
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Intention added'),
+              SnackBar(
+                content: Text(AppLocalizations.of(context)!.intentionAdded),
                 backgroundColor: Colors.grey,
               ),
             );
@@ -62,10 +63,14 @@ class _HomePageState extends State<HomePage> {
             currentIndex = newIndex;
           });
         },
-        items: const [
-          TabItem(icon: Icons.add, title: 'Add'),
-          TabItem(icon: Icons.home, title: 'Home'),
-          TabItem(icon: Icons.people, title: 'Profile'),
+        items: [
+          TabItem(
+              icon: Icons.add, title: AppLocalizations.of(context)!.addIcon),
+          TabItem(
+              icon: Icons.home, title: AppLocalizations.of(context)!.homeIcon),
+          TabItem(
+              icon: Icons.people,
+              title: AppLocalizations.of(context)!.profileIcon),
         ],
       ),
     );
@@ -87,8 +92,8 @@ class _HomePageBody extends StatelessWidget {
         builder: (context, state) {
           switch (state.status) {
             case Status.initial:
-              return const Center(
-                child: Text('Initial state'),
+              return Center(
+                child: Text(AppLocalizations.of(context)!.initialState),
               );
             case Status.loading:
               return const Center(
@@ -106,7 +111,7 @@ class _HomePageBody extends StatelessWidget {
                     SizedBox(
                       width: 300.0,
                       child: TextLiquidFill(
-                        text: 'Intention for Today',
+                        text: AppLocalizations.of(context)!.intentionForToday,
                         waveColor: Colors.lightGreen,
                         boxBackgroundColor:
                             const Color.fromRGBO(203, 232, 169, 1),
@@ -132,14 +137,14 @@ class _HomePageBody extends StatelessWidget {
                         plunkColor: Color(0xffc3a13b),
                         shadowColor: Colors.grey,
                       ),
-                      child: const NeoPopShimmer(
+                      child: NeoPopShimmer(
                         shimmerColor: Colors.white,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 70, vertical: 15),
                           child: Text(
-                            'Draw >',
-                            style: TextStyle(
+                            AppLocalizations.of(context)!.draw,
+                            style: const TextStyle(
                               color: Colors.lightGreen,
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
