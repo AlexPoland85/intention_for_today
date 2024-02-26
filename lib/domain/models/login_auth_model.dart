@@ -6,6 +6,7 @@ part 'login_auth_model.g.dart';
 @freezed
 class LoginAuthModel with _$LoginAuthModel {
   const LoginAuthModel._();
+  @JsonSerializable(fieldRename: FieldRename.snake)
   factory LoginAuthModel({
     required String email,
     required String password,

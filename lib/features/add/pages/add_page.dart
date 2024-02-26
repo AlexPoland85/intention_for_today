@@ -24,7 +24,7 @@ class _AddPageState extends State<AddPage> {
   Widget build(BuildContext context) {
     return BlocProvider<AddPageCubit>(
       create: (context) {
-        return getIt()..start();
+        return getIt();
       },
       child: BlocConsumer<AddPageCubit, AddPageState>(
         listener: (context, state) {

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 import 'package:intention_for_today/app/core/enums.dart';
 import 'package:intention_for_today/domain/models/items_model.dart';
 import 'package:intention_for_today/domain/repositories/items_repository.dart';
@@ -9,7 +8,6 @@ import 'dart:async';
 part 'home_page_cubit.freezed.dart';
 part 'home_page_state.dart';
 
-@injectable
 class HomePageCubit extends Cubit<HomePageState> {
   HomePageCubit(this.itemsRepository) : super(HomePageState());
 

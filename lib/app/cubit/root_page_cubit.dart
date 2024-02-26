@@ -3,13 +3,11 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart';
 import 'package:intention_for_today/app/core/enums.dart';
 
 part 'root_page_state.dart';
 part 'root_page_cubit.freezed.dart';
 
-@injectable
 class RootPageCubit extends Cubit<RootPageState> {
   RootPageCubit()
       : super(
