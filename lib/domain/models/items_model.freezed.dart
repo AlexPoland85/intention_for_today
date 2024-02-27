@@ -117,7 +117,8 @@ class __$$ItemsModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$ItemsModelImpl extends _ItemsModel {
   _$ItemsModelImpl(
       {required this.id, required this.items, required this.usersItems})

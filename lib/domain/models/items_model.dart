@@ -6,6 +6,7 @@ part 'items_model.g.dart';
 @freezed
 class ItemsModel with _$ItemsModel {
   const ItemsModel._();
+  @JsonSerializable(fieldRename: FieldRename.snake)
   factory ItemsModel({
     required String id,
     required String items,

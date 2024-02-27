@@ -106,7 +106,8 @@ class __$$LoginAuthModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$LoginAuthModelImpl extends _LoginAuthModel {
   _$LoginAuthModelImpl({required this.email, required this.password})
       : super._();
