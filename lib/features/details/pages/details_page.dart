@@ -86,26 +86,24 @@ class _DetailsPageBody extends StatelessWidget {
                               .read<DetailsPageCubit>()
                               .deleteItems(id: state.selectedItem!.id);
                         },
-                        child: Expanded(
-                          child: Container(
-                            margin: const EdgeInsets.all(10.0),
-                            padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.lightGreen),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  state.selectedItem!.items,
-                                  style: const TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w100,
-                                    color: Colors.lightGreen,
-                                  ),
+                        child: Container(
+                          margin: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.lightGreen),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                state.selectedItem!.items,
+                                style: const TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w100,
+                                  color: Colors.lightGreen,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
