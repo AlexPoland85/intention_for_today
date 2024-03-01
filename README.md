@@ -1,16 +1,40 @@
 # intention_for_today
 
-A new Flutter project.
+## Draw your Intention for Today
 
-## Getting Started
+<p id="description">Intention for Today is an application that will accompany you every day. It will help you have a positive attitude and go through everyday duties with a smile</p>
 
-This project is a starting point for a Flutter application.
+<h2>🧐 Features</h2>
 
-A few resources to get you started if this is your first Flutter project:
+Here're some of the project's best features:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+*   Drawing your best intention
+*   Firebase Integration
+*   Testing with Cubit Repository Model
+*   Using Freezed GetIt Retrofit
+*   Login and Registration in FirebaseAuth
+*   Clean Architecture
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<h2>🛠️ You can see the app here</h2>
+
+```
+https://intention-for-today-123.web.app/
+```
+
+<h2>🛠️ You can also clone the repository</h2>
+
+```
+git clone https://github.com/AlexPoland85/intention_for_today.git
+```
+  
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   Flutter
+*   Dart
+*   Firebase
+
+<h2>🛡️ Author:</h2>
+
+[@alexpawlowski](https://github.com/AlexPoland85)
