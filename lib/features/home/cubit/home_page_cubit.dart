@@ -15,7 +15,7 @@ class HomePageCubit extends Cubit<HomePageState> {
 
   Future<void> start({required String id}) async {
     emit(
-      HomePageState(
+      state.copyWith(
         status: Status.loading,
       ),
     );
@@ -27,7 +27,7 @@ class HomePageCubit extends Cubit<HomePageState> {
       final List<ItemsModel> usersItems = await usersItemsStream.first;
 
       emit(
-        HomePageState(
+        state.copyWith(
           status: Status.success,
           id: id,
           items: items + usersItems,
@@ -35,7 +35,7 @@ class HomePageCubit extends Cubit<HomePageState> {
       );
     } catch (error) {
       emit(
-        HomePageState(
+        state.copyWith(
           status: Status.error,
           errorMessage: error.toString(),
         ),

@@ -16,7 +16,7 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
 
   Future<void> drawItem({required String id}) async {
     emit(
-      DetailsPageState(
+      state.copyWith(
         status: Status.loading,
       ),
     );
@@ -34,7 +34,7 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
         final randomItem = allItems[random.nextInt(allItems.length)];
 
         emit(
-          DetailsPageState(
+          state.copyWith(
             status: Status.success,
             id: id,
             selectedItem: randomItem,
@@ -51,7 +51,7 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
       }
     } catch (error) {
       emit(
-        DetailsPageState(
+        state.copyWith(
           status: Status.error,
           errorMessage: error.toString(),
         ),
@@ -61,18 +61,18 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
 
   Future<void> deleteItems({required String id}) async {
     emit(
-      DetailsPageState(
+      state.copyWith(
         status: Status.loading,
       ),
     );
     try {
       await itemsRepository.deleteUsersItem(id);
       emit(
-        DetailsPageState(status: Status.success, id: id),
+        state.copyWith(status: Status.success, id: id),
       );
     } catch (error) {
       emit(
-        DetailsPageState(
+        state.copyWith(
           status: Status.error,
           errorMessage: error.toString(),
         ),

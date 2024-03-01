@@ -14,19 +14,3 @@ class LoginAuthModel with _$LoginAuthModel {
   factory LoginAuthModel.fromJson(Map<String, dynamic> json) =>
       _$LoginAuthModelFromJson(json);
 }
-
-// @JsonSerializable()
-// class LoginAuthModel {
-//   const LoginAuthModel({
-//     required this.email,
-//     required this.password,
-//   });
-//   final String email;
-//   final String password;
-
-//   factory LoginAuthModel.fromJson(Map<String, dynamic> json) =>
-//       _$LoginAuthModelFromJson(json);
-
-//   Map<String, dynamic> toJson() => _$LoginAuthModelToJson(this);
-// }
-

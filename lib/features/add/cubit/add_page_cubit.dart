@@ -22,18 +22,18 @@ class AddPageCubit extends Cubit<AddPageState> {
 
   Future<void> addUsersItem({required String content}) async {
     emit(
-      AddPageState(
+      state.copyWith(
         status: Status.loading,
       ),
     );
     try {
       await itemsRepository.addUsersItem(content);
       emit(
-        AddPageState(status: Status.success),
+        state.copyWith(status: Status.success, saved: true),
       );
     } catch (error) {
       emit(
-        AddPageState(
+        state.copyWith(
           status: Status.error,
           errorMessage: error.toString(),
         ),

@@ -20,7 +20,7 @@ class RootPageCubit extends Cubit<RootPageState> {
 
   Future<void> start() async {
     emit(
-      RootPageState(
+      state.copyWith(
         user: null,
         status: Status.loading,
       ),
@@ -30,7 +30,7 @@ class RootPageCubit extends Cubit<RootPageState> {
       _streamSubscription =
           auth.FirebaseAuth.instance.authStateChanges().listen((user) {
         emit(
-          RootPageState(
+          state.copyWith(
             user: user,
             status: Status.success,
           ),
@@ -38,7 +38,7 @@ class RootPageCubit extends Cubit<RootPageState> {
       });
     } catch (error) {
       emit(
-        RootPageState(
+        state.copyWith(
           user: null,
           status: Status.error,
           errorMessage: error.toString(),

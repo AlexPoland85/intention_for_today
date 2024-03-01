@@ -1,7 +1,7 @@
 part of 'home_page_cubit.dart';
 
 @freezed
-class HomePageState with _$HomePageState {
+abstract class HomePageState with _$HomePageState {
   factory HomePageState({
     @Default([]) List<ItemsModel> items,
     @Default(Status.initial) Status status,

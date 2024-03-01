@@ -1,7 +1,7 @@
 part of 'root_page_cubit.dart';
 
 @freezed
-class RootPageState with _$RootPageState {
+abstract class RootPageState with _$RootPageState {
   factory RootPageState({
     auth.User? user,
     @Default(Status.loading) Status status,

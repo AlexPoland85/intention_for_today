@@ -15,20 +15,3 @@ class ItemsModel with _$ItemsModel {
   factory ItemsModel.fromJson(Map<String, dynamic> json) =>
       _$ItemsModelFromJson(json);
 }
-
-// @JsonSerializable()
-// class ItemsModel {
-//   const ItemsModel({
-//     required this.id,
-//     required this.items,
-//   });
-//   final String id;
-//   final String items;
-
-//   factory ItemsModel.fromJson(Map<String, dynamic> json) =>
-//       _$ItemsModelFromJson(json);
-
-//   Map<String, dynamic> toJson() => _$ItemsModelToJson(this);
-// }
-
-
