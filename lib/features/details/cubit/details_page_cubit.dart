@@ -40,14 +40,6 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
             selectedItem: randomItem,
           ),
         );
-      } else {
-        emit(
-          DetailsPageState(
-            status: Status.success,
-            id: id,
-            errorMessage: 'No items available.',
-          ),
-        );
       }
     } catch (error) {
       emit(

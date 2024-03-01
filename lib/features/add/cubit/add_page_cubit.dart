@@ -8,17 +8,14 @@ part 'add_page_cubit.freezed.dart';
 part 'add_page_state.dart';
 
 class AddPageCubit extends Cubit<AddPageState> {
-  AddPageCubit(this.itemsRepository) : super(AddPageState());
+  AddPageCubit(this.itemsRepository)
+      : super(
+          AddPageState(
+            status: Status.success,
+          ),
+        );
 
   final ItemsRepository itemsRepository;
-
-  Future<void> start() async {
-    emit(
-      AddPageState(
-        status: Status.success,
-      ),
-    );
-  }
 
   Future<void> addUsersItem({required String content}) async {
     emit(

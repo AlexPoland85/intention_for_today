@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intention_for_today/app/core/enums.dart';
-import 'package:intention_for_today/data/remote_data_sources_firebase/items_remote_data_source.dart';
-import 'package:intention_for_today/domain/repositories/items_repository.dart';
+import 'package:intention_for_today/app/injection_container.dart';
 import 'package:intention_for_today/features/add/cubit/add_page_cubit.dart';
 import 'package:neopop/neopop.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({
@@ -23,20 +23,21 @@ class _AddPageState extends State<AddPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          AddPageCubit(ItemsRepository(ItemsRemoteDataSource()))..start(),
+    return BlocProvider<AddPageCubit>(
+      create: (context) {
+        return getIt();
+      },
       child: BlocConsumer<AddPageCubit, AddPageState>(
         listener: (context, state) {
           if (state.saved == true) {
-            Navigator.of(context).pop();
+            widget.onSave();
           }
         },
         builder: (context, state) {
           switch (state.status) {
             case Status.initial:
-              return const Center(
-                child: Text('Initial state'),
+              return Center(
+                child: Text(AppLocalizations.of(context)!.initialState),
               );
             case Status.loading:
               return const Center(
@@ -54,8 +55,9 @@ class _AddPageState extends State<AddPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextField(
-                        decoration: const InputDecoration(
-                          hintText: 'Add Your Intention for Today',
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)!
+                              .addYourIntentionForToday,
                         ),
                         onChanged: (newValue) {
                           setState(() {
@@ -74,21 +76,20 @@ class _AddPageState extends State<AddPage> {
                                 context
                                     .read<AddPageCubit>()
                                     .addUsersItem(content: _intention!);
-                                widget.onSave();
                               },
                         decoration: const NeoPopTiltedButtonDecoration(
                           color: Color(0xFFffe22d),
                           plunkColor: Color(0xffc3a13b),
                           shadowColor: Colors.grey,
                         ),
-                        child: const NeoPopShimmer(
+                        child: NeoPopShimmer(
                             shimmerColor: Colors.white,
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 70, vertical: 15),
                               child: Text(
-                                'Add >',
-                                style: TextStyle(
+                                AppLocalizations.of(context)!.add,
+                                style: const TextStyle(
                                   color: Colors.lightGreen,
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
